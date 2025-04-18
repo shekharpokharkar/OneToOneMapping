@@ -8,8 +8,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.shekhar.annotation.SalaryValid;
 
 import jakarta.persistence.Column;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -32,6 +34,7 @@ public class StudentDTO {
 	@JsonFormat(pattern = "dd-MM-yyyy")
 	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	private LocalDate studentDateOfBirth;
+	@SalaryValid(min = 5000)
 	private BigDecimal studentSalary;
 	@JsonProperty("maritialStatus")
 	private Boolean isMarried;

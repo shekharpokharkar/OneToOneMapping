@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.shekhar.DTO.StudentDTO;
 import com.shekhar.service.StudentService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping(value = "/student")
 public class StudentController {
@@ -30,7 +32,7 @@ public class StudentController {
 	@PostMapping(value = "/", consumes = { MediaType.APPLICATION_JSON_VALUE,
 			MediaType.APPLICATION_XML_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE,
 					MediaType.APPLICATION_XML_VALUE })
-	private ResponseEntity<StudentDTO> addStudent(@RequestBody StudentDTO student) {
+	private ResponseEntity<StudentDTO> addStudent(@Valid @RequestBody StudentDTO student) {
 		StudentDTO dto = studentService.saveStudent(student);
 		return new ResponseEntity<StudentDTO>(dto, HttpStatus.CREATED);
 	}
